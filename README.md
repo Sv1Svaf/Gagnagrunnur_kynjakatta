@@ -1,0 +1,2 @@
+# Gagnagrunnur_kynjakatta
+Gagnagrunnur kynjakatta
