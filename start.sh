@@ -13,9 +13,9 @@ pip install django
 django-admin startproject kkidb
 cat > /etc/apache2/conf-available/kkidb.conf <<EOF
 WSGIScriptAlias / /opt/django-env/kkidb/kkidb/wsgi.py
-WSGIPythonPath /opt/django-env/kkidb
+WSGIPythonPath /opt/django-env/kkidb:/opt/django-env/lib/python2.7/site-packages
 
-<Directory /opt/django-env/kkidb/kkidb>
+<Directory /opt/django-env/kkidb>
 <Files wsgi.py>
 Require all granted
 </Files>
@@ -23,3 +23,4 @@ Require all granted
 EOF
 
 a2enconf kkidb
+systemctl restart apache2.service 
