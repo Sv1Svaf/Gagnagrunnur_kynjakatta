@@ -1,4 +1,3 @@
-# Gagnagrunnur_kynjakatta
 How to get this working
 
 - Clone this repo
