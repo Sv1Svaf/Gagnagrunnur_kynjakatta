@@ -1,3 +1,8 @@
 # Gagnagrunnur_kynjakatta
-Gagnagrunnur kynjakatta
-Hérna ætlum við að halda utan um allann kóðann sem er fyrir nýjann gagnagrunn hjá kynjaköttum.
+How to get this working
+
+#Clone this repo
+#Install Vagrant from https://www.vagrantup.com/
+#Install Virtualbox from https://www.virtualbox.org/
+#ope a terminal cd into the cloned repository and run "vagrant up"
+
