@@ -1,56 +1,57 @@
+drop database if exists kkidb;
 CREATE DATABASE IF NOT EXISTS kkidb;
 use kkidb;
 
 SET FOREIGN_KEY_CHECKS=0;
 
-create table if not exists db_cat(
-    id int primary key,
+create table if not exists catdb_cat(
+    id int AUTO_INCREMENT not null primary key,
     reg_nr varchar(30),
     name varchar(50) not null,
     gender bool not null,
-    birth date not null,
+    birth date,
     registered date,
-    dam int,
-    sire int,
-    foreign key(dam) references db_parents(id),
-    foreign key(sire) references db_parents(id),
+    dam_id int,
+    sire_id int,
+    foreign key(dam_id) references catdb_parents(id),
+    foreign key(sire_id) references catdb_parents(id),
     comments varchar(50),
     type varchar(3)
 );
 
-create table if not exists db_ghost_cat(
-    id int primary key,
+create table if not exists catdb_ghost_cat(
+    id int AUTO_INCREMENT not null primary key,
     reg_nr varchar(30),
     name varchar(50),
-    birth date not null,
+    birth date,
     ems varchar(20),
     microchip varchar(30),
-    dam int,
-    sire int,
-    foreign key(dam) references db_parents(id),
-    foreign key(sire) references db_parents(id)
+    dam_id int,
+    sire_id int,
+    foreign key(dam_id) references catdb_parents(id),
+    foreign key(sire_id) references catdb_parents(id)
 );
 
-create table if not exists db_parents(
-    id int primary key,
+create table if not exists catdb_parents(
+    id int AUTO_INCREMENT primary key,
     is_ghost boolean not null,
-    cat int,
-    ghost int,
-    foreign key(cat) references db_cat(id),
-    foreign key(ghost) references db_ghost_cat(id)
+    cat_id int,
+    ghost_id int,
+    foreign key(cat_id) references catdb_cat(id),
+    foreign key(ghost_id) references catdb_ghost_cat(id)
 );
 
-create table if not exists db_cat_owners(
-    id int primary key,
-    cat int,
-    owner int,
-    foreign key(cat) references db_cat(id),
-    foreign key(owner) references db_people(id),
+create table if not exists catdb_cat_owners(
+    id int AUTO_INCREMENT NOT NULL primary key,
+    cat_id int,
+    owner_id int,
+    foreign key(cat_id) references catdb_cat(id),
+    foreign key(owner_id) references catdb_people(id),
     regdate date
 );
 
-create table if not exists db_people(
-    id int primary key,
+create table if not exists catdb_people(
+    id int AUTO_INCREMENT NOT NULL primary key,
     name varchar(50) not null,
     id_num varchar(30) not null,
     address varchar(40),
@@ -61,10 +62,10 @@ create table if not exists db_people(
     comment varchar(144)
 );
 
-create table if not exists db_imp_cat(
-    id int primary key,
+create table if not exists catdb_imp_cat(
+    id int AUTO_INCREMENT NOT NULL primary key,
     cat_id int,
-    foreign key(cat_id) references db_cat(id),
+    foreign key(cat_id) references catdb_cat(id),
     org_country char(3),
     org_organization varchar(10),
     org_reg_nr varchar(20),
@@ -72,43 +73,43 @@ create table if not exists db_imp_cat(
 );
 
 
-create table if not exists db_cat_EMS(
-    id int primary key,
+create table if not exists catdb_cat_EMS(
+    id int AUTO_INCREMENT NOT NULL primary key,
     cat_id int,
     ems_id int,
-    foreign key(cat_id) references db_cat(id),
-    foreign key(ems_id) references db_EMS(id),
+    foreign key(cat_id) references catdb_cat(id),
+    foreign key(ems_id) references catdb_EMS(id),
     reg_date date not null
 );
 
-create table if not exists db_EMS(
-    id int primary key,
+create table if not exists catdb_EMS(
+    id int AUTO_INCREMENT NOT NULL primary key,
     breed varchar(40),
     ems_key varchar(20)
 );
 
-create table if not exists db_neutered(
-    id int primary key,
+create table if not exists catdb_neutered(
+    id int AUTO_INCREMENT NOT NULL primary key,
     cat int not null,
     date date not null,
-    foreign key(cat) references db_cat(id)
+    foreign key(cat) references catdb_cat(id)
 );
 
-create table if not exists db_microchip(
-    id int primary key,
+create table if not exists catdb_microchip(
+    id int AUTO_INCREMENT NOT NULL primary key,
     cat int not null,
     microchip_nr varchar(30) not null
 );
 
-create table if not exists db_group(
-    id int primary key,
+create table if not exists catdb_group(
+    id int AUTO_INCREMENT NOT NULL primary key,
     breed varchar(50),
     ems varchar(50),
     groupp varchar(50)
 );
 
-create table if not exists db_category(
-    id int primary key,
+create table if not exists catdb_category(
+    id int AUTO_INCREMENT NOT NULL primary key,
     breed varchar(50),
     category varchar(50)
 );

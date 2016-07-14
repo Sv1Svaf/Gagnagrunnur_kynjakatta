@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'catdb.apps.CatdbConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,10 +77,10 @@ WSGI_APPLICATION = 'kkidb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backend.mysql',
-        'NAME': 'Django',
-	'USER': 'vagrant',
-	'PASSWORD':'vagrant',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'kkidb',
+	'USER': 'root',
+	'PASSWORD':'',
 	'HOST':'localhost',
 	'PORT':'3306'
 	 }

@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "Starting provision"
+echo "Installing updates, upgrades, and enviroments"
  apt-get update && apt-get -y upgrade
  apt-get -y install apache2 python-pip libapache2-mod-wsgi
  apt-get install debconf-utils
@@ -9,6 +11,8 @@ cd /opt/
 virtualenv django-env
 cd django-env
 . bin/activate
+
+echo 'installing Django'
 sudo pip install django
 django-admin startproject kkidb
 cat > /etc/apache2/conf-available/kkidb.conf <<EOF
@@ -27,11 +31,14 @@ sudo apt-get install python-mysqldb
 sudo a2enconf kkidb
 sudo systemctl restart apache2.service 
 
+echo 'Establishing database.'
 cd kkidb
-python manage.py startapp polls
+sudo python manage.py startapp catdb
 cd ..
-sudo cp -f -r /../../kkidb_static/* kkidb/
-
-sudo mysql < kkidb/datainit.sql
+sudo cp -r /../../kkidb_static/* kkidb/
+sudo mysql < kkidb/MySql/datainit.sql
+cd kkidb
+sudo python manage.py migrate
+sudo python manage.py makemigrations
 
 echo 'I HAVE BEEN SUMMONED!'
