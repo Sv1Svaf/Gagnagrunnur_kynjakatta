@@ -15,7 +15,7 @@ create table if not exists catdb_cat(
     sire_id int,
     foreign key(dam_id) references catdb_parents(id),
     foreign key(sire_id) references catdb_parents(id),
-    comments varchar(50),
+    comments varchar(50),cat
     type varchar(3)
 );
 
@@ -90,7 +90,7 @@ create table if not exists catdb_EMS(
 
 create table if not exists catdb_neutered(
     id int AUTO_INCREMENT NOT NULL primary key,
-    cat int not null,
+    cat_id int not null,
     date date not null,
     foreign key(cat) references catdb_cat(id)
 );
@@ -99,6 +99,7 @@ create table if not exists catdb_microchip(
     id int AUTO_INCREMENT NOT NULL primary key,
     cat int not null,
     microchip_nr varchar(30) not null
+    foreign key(cat) references catdb_cat(id)
 );
 
 create table if not exists catdb_group(
