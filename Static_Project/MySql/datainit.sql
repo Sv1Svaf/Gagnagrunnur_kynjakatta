@@ -13,9 +13,9 @@ create table if not exists catdb_cat(
     registered date,
     dam_id int,
     sire_id int,
-    foreign key(dam_id) references catdb_parents(id),
-    foreign key(sire_id) references catdb_parents(id),
-    comments varchar(50),cat
+    foreign key(dam_id) references catdb_parents(id) ON DELETE CASCADE,
+    foreign key(sire_id) references catdb_parents(id) ON DELETE CASCADE,
+    comments varchar(50),
     type varchar(3)
 );
 
@@ -28,8 +28,8 @@ create table if not exists catdb_ghost_cat(
     microchip varchar(30),
     dam_id int,
     sire_id int,
-    foreign key(dam_id) references catdb_parents(id),
-    foreign key(sire_id) references catdb_parents(id)
+    foreign key(dam_id) references catdb_parents(id) ON DELETE CASCADE,
+    foreign key(sire_id) references catdb_parents(id) ON DELETE CASCADE
 );
 
 create table if not exists catdb_parents(
@@ -37,16 +37,16 @@ create table if not exists catdb_parents(
     is_ghost boolean not null,
     cat_id int,
     ghost_id int,
-    foreign key(cat_id) references catdb_cat(id),
-    foreign key(ghost_id) references catdb_ghost_cat(id)
+    foreign key(cat_id) references catdb_cat(id) ON DELETE CASCADE,
+    foreign key(ghost_id) references catdb_ghost_cat(id) ON DELETE CASCADE
 );
 
 create table if not exists catdb_cat_owners(
     id int AUTO_INCREMENT NOT NULL primary key,
     cat_id int,
     owner_id int,
-    foreign key(cat_id) references catdb_cat(id),
-    foreign key(owner_id) references catdb_people(id),
+    foreign key(cat_id) references catdb_cat(id) ON DELETE CASCADE,
+    foreign key(owner_id) references catdb_people(id) ON DELETE CASCADE,
     regdate date
 );
 
@@ -64,9 +64,9 @@ create table if not exists catdb_people(
 
 create table if not exists catdb_imp_cat(
     id int AUTO_INCREMENT NOT NULL primary key,
-    cat_id int,
-    foreign key(cat_id) references catdb_cat(id),
-    org_country char(3),
+    cat_id int NOT NULL,
+    foreign key(cat_id) references catdb_cat(id) ON DELETE CASCADE,
+    org_country varchar(3),
     org_organization varchar(10),
     org_reg_nr varchar(20),
     attachment blob
@@ -77,8 +77,8 @@ create table if not exists catdb_cat_EMS(
     id int AUTO_INCREMENT NOT NULL primary key,
     cat_id int,
     ems_id int,
-    foreign key(cat_id) references catdb_cat(id),
-    foreign key(ems_id) references catdb_EMS(id),
+    foreign key(cat_id) references catdb_cat(id) ON DELETE CASCADE,
+    foreign key(ems_id) references catdb_EMS(id) ON DELETE CASCADE,
     reg_date date not null
 );
 
@@ -92,14 +92,14 @@ create table if not exists catdb_neutered(
     id int AUTO_INCREMENT NOT NULL primary key,
     cat_id int not null,
     date date not null,
-    foreign key(cat) references catdb_cat(id)
+    foreign key(cat_id) references catdb_cat(id) ON DELETE CASCADE
 );
 
 create table if not exists catdb_microchip(
     id int AUTO_INCREMENT NOT NULL primary key,
-    cat int not null,
-    microchip_nr varchar(30) not null
-    foreign key(cat) references catdb_cat(id)
+    cat_id int not null,
+    microchip_nr varchar(30) not null UNIQUE,
+    foreign key(cat_id) references catdb_cat(id)
 );
 
 create table if not exists catdb_group(

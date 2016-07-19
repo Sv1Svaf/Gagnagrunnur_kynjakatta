@@ -33,10 +33,11 @@ class ghost_cat(models.Model):
 	sire = models.ForeignKey('parents',on_delete = models.CASCADE,related_name = 'ghost_sire')
 	
 class imp_cat(models.Model):
-	id = models.AutoField(primary_key = True)
-	cat = models.ForeignKey('cat',on_delete = models.CASCADE)
-	ems = models.ForeignKey('EMS',on_delete = models.CASCADE)
-	reg_date = models.DateField(null = False)
+    id = models.AutoField(primary_key = True)
+    cat = models.ForeignKey('cat',on_delete = models.CASCADE)
+    org_country = models.CharField(max_length = 3,null = True)
+    org_organization = models.CharField(max_length = 10,null = True)
+    org_reg_nr = models.CharField(max_length = 20,null = True)
 
 class EMS(models.Model):
 	id = models.AutoField(primary_key = True)
