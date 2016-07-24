@@ -43,13 +43,14 @@
     <Compile Include="kkidb\__init__.py" />
     <Compile Include="manage.py" />
     <Compile Include="test.py" />
-    <Compile Include="Test\test1.py">
+    <Compile Include="Test\sql_section2_test.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="catdb" />
     <Folder Include="catdb\migrations" />
+    <Folder Include="catdb\templates\" />
     <Folder Include="kkidb" />
     <Folder Include="MySql" />
     <Folder Include="Test\" />

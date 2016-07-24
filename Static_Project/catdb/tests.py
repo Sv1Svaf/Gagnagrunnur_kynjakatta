@@ -163,7 +163,10 @@ class UnitTest(TestCase):
                 if((imp_cat.objects.filter(cat = i.id)).count() == 0):
                     try:
                         M = microchip.objects.get(cat = i.id)
-                        print(i.name + " has the chip number " + M.microchip_nr + " (should be " +str((int(i.reg_nr) + 5)) + ")")
+                        if(M.microchip_nr == str((int(i.reg_nr) + 5))):
+                            print(i.name + " has the correct microchip.")
+                        else:
+                            print(i.name + " has the incorrect microchip! ( has  "+M.microchip_nr + ", should be "+str((int(i.reg_nr) + 5)) + ")")
                     except ObjectDoesNotExist:
                         #emptyblock
                         print(i.name + " does not have a microchip!")
