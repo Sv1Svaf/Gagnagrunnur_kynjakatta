@@ -1,0 +1,9 @@
+﻿{% if cats %}
+    <ul>
+    {% for mja in cats %}
+        <li>{{mja.name}}, {{mja.sire.cat.name}}, {{mja.dam.cat.name}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cats are available. they are all married.</p>
+{% endif %}

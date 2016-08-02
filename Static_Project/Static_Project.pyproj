@@ -21,6 +21,8 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="catdb\templates\kkidb\testpage.html" />
+    <Content Include="catdb\templates\kkidb\index.html" />
     <Content Include="db.sqlite3" />
     <Content Include="MySql\datainit.sql" />
   </ItemGroup>
@@ -51,6 +53,7 @@
     <Folder Include="catdb" />
     <Folder Include="catdb\migrations" />
     <Folder Include="catdb\templates\" />
+    <Folder Include="catdb\templates\kkidb\" />
     <Folder Include="kkidb" />
     <Folder Include="MySql" />
     <Folder Include="Test\" />
