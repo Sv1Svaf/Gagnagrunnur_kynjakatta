@@ -1,9 +1,26 @@
 ﻿{% if cats %}
-    <ul>
+    <table style ="border:1px solid black">
+        <tr style ="border:1px solid black">
+            <th>id</th>
+            <th>name</th>
+            <th>gender</th>
+            <th>Father</th>
+            <th>Mother</th>
+        </trstyle>
     {% for mja in cats %}
-        <li>{{mja.name}}, {{mja.sire.cat.name}}, {{mja.dam.cat.name}}</li>
+        <tr style ="border:1px solid black">
+            <td style ="border:1px solid black">{{mja.id}}</td>
+            <td style ="border:1px solid black">{{mja.name}}</td>
+            {% if mja.gender%}
+                <td style ="border:1px solid black">Female</td>
+            {% else %}
+                <td style ="border:1px solid black">Male</td>
+            {% endif %}
+            <td style ="border:1px solid black">{{mja.sire.cat.name}}</td>
+            <td style ="border:1px solid black">{{mja.dam.cat.name}}</td>
+        </trstyle>
     {% endfor %}
-    </ul>
+    </table>
 {% else %}
     <p>No cats are available. they are all married.</p>
 {% endif %}

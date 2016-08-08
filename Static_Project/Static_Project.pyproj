@@ -23,6 +23,9 @@
   <ItemGroup>
     <Content Include="catdb\templates\kkidb\testpage.html" />
     <Content Include="catdb\templates\kkidb\index.html" />
+    <Content Include="catdb\templates\kkidb\search.html" />
+    <Content Include="catdb\templates\kkidb\results.html" />
+    <Content Include="catdb\templates\kkidb\ViewCat.html" />
     <Content Include="db.sqlite3" />
     <Content Include="MySql\datainit.sql" />
   </ItemGroup>
@@ -35,6 +38,9 @@
     <Compile Include="catdb\migrations\0004_auto_20160714_2027.py" />
     <Compile Include="catdb\migrations\__init__.py" />
     <Compile Include="catdb\models.py" />
+    <Compile Include="catdb\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="catdb\tests.py" />
     <Compile Include="catdb\urls.py" />
     <Compile Include="catdb\views.py" />
