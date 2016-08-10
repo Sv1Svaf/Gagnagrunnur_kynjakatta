@@ -1,11 +1,45 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>
+        {% if cat %}
+
+
+
+        {{cat.name}}
+        {%else%}
+        Not found.
+        {%endif%}
+    </title>
 </head>
 <body>
+    {% if cat %}
+    <h1>{{cat.name}}</h1>
+    <p>given name: {{cat.name}}</p>
+    <p>Born : {{cat.birth}}</p>
+    {% if cat.gender%}
+        <p>Gender: Male (Tomcat)</p>
+    {% else %}
+        <p>Gender: Female (Queen)</p>
+    {% endif %}
+    <p>Registered on: {{cat.registered}}</p>
+    <p>Sire:<a href = "../cat?view={{cat.sire.cat.id}}">{{cat.sire.cat.name}}</a></p>
+    <p>Dam:<a href = "../cat?view={{cat.dam.cat.id}}">{{cat.dam.cat.name}}</a></p>
 
+
+
+    {%else%}
+    <h1>Not found</h1>
+    <p>
+        Sorry.
+    </p>
+    <p>
+        You've taken a wrong turn: <br/>
+        There exists no cat under that id. <br/>
+        If you think this is a mistake please contact the website administrator.
+    </p>
+    {% endif %}
 </body>
 </html>

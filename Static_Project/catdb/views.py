@@ -87,4 +87,16 @@ def kitty(request):
     return HttpResponse(template.render(context, request))
 
 def catview(request):
-	return HttpResponse('lol, you think this feature actually exists!')
+	template = loader.get_template('kkidb/ViewCat.html')
+	view = request.GET.get('view')
+	if(view != ''):
+		c = cat.objects.all()
+		c = c.filter(id = view)
+	if(len(c) != 1):
+		context = {}
+	else:
+		context ={
+				'cat'  : c[0]
+			}
+
+	return HttpResponse(template.render(context, request))
