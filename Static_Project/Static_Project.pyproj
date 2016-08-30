@@ -21,11 +21,13 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="catdb\static\SadCat.jpg" />
     <Content Include="catdb\templates\kkidb\testpage.html" />
     <Content Include="catdb\templates\kkidb\index.html" />
     <Content Include="catdb\templates\kkidb\search.html" />
     <Content Include="catdb\templates\kkidb\results.html" />
     <Content Include="catdb\templates\kkidb\ViewCat.html" />
+    <Content Include="catdb\templates\kkidb\404.html" />
     <Content Include="db.sqlite3" />
     <Content Include="MySql\datainit.sql" />
   </ItemGroup>
@@ -58,8 +60,11 @@
   <ItemGroup>
     <Folder Include="catdb" />
     <Folder Include="catdb\migrations" />
+    <Folder Include="catdb\static\" />
+    <Folder Include="catdb\static\kkidb\" />
     <Folder Include="catdb\templates\" />
     <Folder Include="catdb\templates\kkidb\" />
+    <Folder Include="catdb\static\Images\" />
     <Folder Include="kkidb" />
     <Folder Include="MySql" />
     <Folder Include="Test\" />

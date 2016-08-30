@@ -1,0 +1,4 @@
+use kkidb;
+
+delete from catdb_cat;
+delete from catdb_parents;

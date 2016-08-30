@@ -6,8 +6,8 @@ SET FOREIGN_KEY_CHECKS=0;
 
 create table if not exists catdb_cat(
     id int AUTO_INCREMENT not null primary key,
-    reg_nr varchar(30),
-    name varchar(50) not null,
+    reg_nr varchar(5),
+    name varchar(35) not null,
     gender bool not null,
     birth date,
     registered date,
@@ -15,7 +15,7 @@ create table if not exists catdb_cat(
     sire_id int,
     foreign key(dam_id) references catdb_parents(id) ON DELETE CASCADE,
     foreign key(sire_id) references catdb_parents(id) ON DELETE CASCADE,
-    comments varchar(50),
+    comments varchar(144),
     type varchar(3)
 );
 
@@ -24,7 +24,6 @@ create table if not exists catdb_ghost_cat(
     reg_nr varchar(30),
     name varchar(50),
     birth date,
-    ems varchar(20),
     microchip varchar(30),
     dam_id int,
     sire_id int,
@@ -82,10 +81,18 @@ create table if not exists catdb_cat_EMS(
     reg_date date not null
 );
 
+create table if not exists catdb_ghost_EMS(
+    id int AUTO_INCREMENT NOT NULL primary key,
+    ghost_id int,
+    ems_id int,
+    foreign key(ghost_id) references catdb_ghost_cat(id) ON DELETE CASCADE,
+    foreign key(ems_id) references catdb_EMS(id) ON DELETE CASCADE
+);
+
 create table if not exists catdb_EMS(
     id int AUTO_INCREMENT NOT NULL primary key,
-    breed varchar(40),
-    ems_key varchar(20)
+    breed varchar(3),
+    ems_key varchar(15)
 );
 
 create table if not exists catdb_neutered(

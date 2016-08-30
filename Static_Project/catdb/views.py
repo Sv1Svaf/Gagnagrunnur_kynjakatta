@@ -100,3 +100,8 @@ def catview(request):
 			}
 
 	return HttpResponse(template.render(context, request))
+
+def fourohfour(request):
+	template = loader.get_template('kkidb/404.html')
+	context = {}
+	return HttpResponse(template.render(context, request))
