@@ -8,4 +8,5 @@
 *.cvs
 Static_project\KKIDB_exports\*
 Static_project\KKIDB_exports\
-Static_project\KKIDB_export
+Static_project/KKIDB_exports/*
+Static_project/KKIDB_exports/
