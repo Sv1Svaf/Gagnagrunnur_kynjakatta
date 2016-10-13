@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from catdb.models import *
 from .forms import SearchCat
+
 # Create your views here.
 
 def index(request,self):
@@ -10,12 +13,13 @@ def index(request,self):
 	context = {}
 	return HttpResponse(template.render(context, request))
 
-def search(request,isSafe = True):
+def search(request,isSafe = True,nom = ""):
 	template = loader.get_template('kkidb/search.html')
 	form = SearchCat()
 	context = {
 		'form': form,
-		'isSafe':isSafe
+		'isSafe':isSafe,
+		'nom':nom
 		}
 	return HttpResponse(template.render(context, request))
 
@@ -26,7 +30,10 @@ def findcat(request):
 	#****************** Name **************
 	if(req.get('name') != ''):
 		valid = True
-		c = c.filter(name__contains = req.get('name'))
+		uniname = '%'+ req.get('name') + "%"
+		nomc = cat.objects.raw("SELECT * from catdb_cat where name like %s",[uniname])
+		qset = [row.id for row in nomc] 
+		c = c.filter(id__in = qset)
 	#****************** Registered number **************
 	if(req.get('reg_nr') != ''):
 		valid = True
@@ -76,7 +83,7 @@ def findcat(request):
 		}
 		return HttpResponse(template.render(context, request))
 	else:
-		return search(request,False)
+		return search(request,False,req.get('name'))
 
 def kitty(request):
     C = cat.objects.all()

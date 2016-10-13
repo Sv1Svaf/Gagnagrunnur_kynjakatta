@@ -13,6 +13,7 @@
     {% if not isSafe %}
         <p style="color:red">No cat found with those terms.</p>
     {% endif %}
+    <p>{{nom}}</p>
     {% for field in form %}
     <p>{{field.label_tag}}</p>{{field}}<br/>
     {% endfor %}

@@ -1,5 +1,6 @@
-
+# -*- coding: utf-8 -*-
 import csv
+import os
 from sets import Set
 from django.core.management.base import BaseCommand, CommandError
 from catdb.models import *
@@ -11,16 +12,16 @@ from datetime import datetime
 
 class Command(BaseCommand):
 	def handle(self, *args, **options):
-		print("started")
+		print("started better")
 		Length = 1
-		with open('KKIDB_EXPORTS/Adallisti.csv', 'rb') as lengthfile:
-			lengthreader =  unicode_csv_reader(lengthfile, delimiter=';', quotechar='"')
+		with open('KKIDB_exports/Adallisti.csv', 'rb') as lengthfile:
+			lengthreader =  unicode_csv_reader(lengthfile, quotechar='"')
 			Length = sum(1 for row in lengthreader)
 			print("Length recorded as " + str(Length))
 		lengthfile.close()
 
-		with open('KKIDB_EXPORTS/Adallisti.csv', 'rb') as csvfile:
-			spamreader = unicode_csv_reader(csvfile, delimiter=';', quotechar='"')
+		with open('KKIDB_exports/Adallisti.csv', 'rb') as csvfile:
+			spamreader = unicode_csv_reader(csvfile, quotechar='"')
 			first = True
 			print("loaded")
 			done = 0
@@ -34,7 +35,7 @@ class Command(BaseCommand):
 						print("TOO LONG NAME",row[3])
 					C.name = row[3]
 					C.reg_nr = row[0]
-					C.gender = (row[5] == 'Fress')
+					C.gender = (row[5] != 'Fress')
 					if(row[2] != ''):
 						date_object = datetime.strptime(row[2], '%d.%m.%Y %H:%M:%S')
 						C.registered = date_object.date()
@@ -65,10 +66,10 @@ class Command(BaseCommand):
 					P.save()
 
 					done += 1
-					if((100*done/Length) > 100*lastpercent):
+					if((100*done/Length) >= 100*lastpercent):
 						print(str(lastpercent*100) + "% done ("+str(done) + " cats registered)")
 						lastpercent += 0.05
-			print("import done ("+str(done)+"/"+str(Length)  + " cats registered)")
+			print("import done ("+str(done + 1)+"/"+str(Length) + " cats registered)")
 			csvfile.close()
 
 		#		C = cat();
@@ -82,10 +83,10 @@ class Command(BaseCommand):
 def unicode_csv_reader(unicode_csv_data, dialect=csv.excel, **kwargs):
     # csv.py doesn't do Unicode; encode temporarily as UTF-8:
     csv_reader = csv.reader(utf_8_encoder(unicode_csv_data),
-                            dialect=dialect, **kwargs)
+                            dialect=dialect, delimiter = ';',**kwargs)
     for row in csv_reader:
         # decode UTF-8 back to Unicode, cell by cell:
-        yield [unicode(cell, 'utf-8') for cell in row]
+        yield [str(cell) for cell in row]
 
 
 
