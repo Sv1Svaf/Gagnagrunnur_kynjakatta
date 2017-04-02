@@ -8,13 +8,14 @@ from .forms import SearchCat
 
 # Create your views here.
 
+
 def index(request,self):
 	template = loader.get_template('kkidb/index.html')
 	context = {}
 	return HttpResponse(template.render(context, request))
 
 def search(request,isSafe = True,nom = ""):
-	template = loader.get_template('kkidb/search.html')
+	template = loader.get_template('kkidb/Cats/search.html')
 	form = SearchCat()
 	context = {
 		'form': form,
@@ -77,7 +78,7 @@ def findcat(request):
 				c = c.exclude(name = cats.name)
 	#**************** Roundup *****************
 	if(len(c) > 0):
-		template = loader.get_template('kkidb/results.html')
+		template = loader.get_template('kkidb/Cats/results.html')
 		context = {
 			'cats': c,
 		}
@@ -87,14 +88,14 @@ def findcat(request):
 
 def kitty(request):
     C = cat.objects.all()
-    template = loader.get_template('kkidb/testpage.html')
+    template = loader.get_template('kkidb/Cats/testpage.html')
     context = {
         'cats': C,
     }
     return HttpResponse(template.render(context, request))
 
 def catview(request):
-	template = loader.get_template('kkidb/ViewCat.html')
+	template = loader.get_template('kkidb/Cats/ViewCat.html')
 	view = request.GET.get('view')
 	if(view != ''):
 		c = cat.objects.all()
@@ -109,6 +110,6 @@ def catview(request):
 	return HttpResponse(template.render(context, request))
 
 def fourohfour(request):
-	template = loader.get_template('kkidb/404.html')
+	template = loader.get_template('kkidb//shared/404.html')
 	context = {}
 	return HttpResponse(template.render(context, request))

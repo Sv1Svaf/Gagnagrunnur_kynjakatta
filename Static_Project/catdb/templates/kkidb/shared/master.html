@@ -1,0 +1,32 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html>
+<head>    
+    {%block head%}{%endblock%}
+    <title>{% block title %}KKÍ Gagnagrunnur{% endblock %}</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href={% static "shared/css/master.css" %}>
+</head>
+<body>
+    <div id = "title_bar">
+        {%block title_bar%}
+        <ul>
+            <li>
+                <a href="kettir">Allir Kettir</a>
+            </li>
+            <li>
+                <a href="leita">Leita</a>
+            </li>
+            <li>
+                <a href="leita">Skrá kött</a>
+            </li>
+        </ul>
+        {% endblock %}
+    </div>
+    <div id="body_area"> 
+    {% block body %}
+    
+    {% endblock %}
+    </div>
+</body>
+</html>

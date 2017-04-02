@@ -1,0 +1,9 @@
+#!/bin/bash
+sudo rm -rf /opt/django-env/kkidb/;
+mkdir /opt/django-env/kkidb;
+sudo cp -r /kkidb_static/* /opt/django-env/kkidb/;
+sudo /etc/init.d/apache2 restart;
+cd /opt/django-env/kkidb;
+sudo python /kkidb_static/manage.py collectstatic --clear;
+sudo /etc/init.d/apache2 restart;
+

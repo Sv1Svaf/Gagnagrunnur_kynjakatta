@@ -1,0 +1,13 @@
+﻿{% extends "kkidb/shared/master.html" %}
+{% load static %}
+
+{% block title %}404{% endblock %}
+{% block body %}
+    NO
+    <h1>404 (Page not found)</h1>
+    <h1>:( There are no cats here. :(</h1>
+    <h2>It seems that you've arrived on a page that does not exist. <br/>
+    Make sure that the URL is correctly spelled and you're on the correct site<br/>
+    If you think this is a mistake, contact the website administrator. </h2>
+    <img src={% static "SadCat.jpg" %}>
+{% endblock %}
